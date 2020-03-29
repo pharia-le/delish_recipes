@@ -1,6 +1,10 @@
-require "food_recipes/version"
+require 'pry'
+require 'rest-client'
+require 'json'
+require 'nokogiri'
+require 'open-uri'
 
-module FoodRecipes
-  class Error < StandardError; end
-  # Your code goes here...
-end
+require_relative './food_recipes/version'
+require_relative './food_recipes/cli'
+require_relative './food_recipes/recipe'
+require_relative './food_recipes/scraper'
