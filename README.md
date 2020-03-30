@@ -14,7 +14,7 @@ TODO:
 
 Type the below and follow the on screen prompts.
 
-    $ ./bin/food-recipes
+    $ ruby ./bin/food-recipes
 
 ## Development
 
