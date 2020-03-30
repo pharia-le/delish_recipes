@@ -1,16 +1,17 @@
 class FoodRecipes::Recipe
 
-    attr_accessor :name, :type, :url, :doc, :prep, :cook, :total, :servings, :ingredients, :directions, :nutrition_facts
-
+    attr_accessor :name, :type, :url, :yields, :prep, :total, :ingredients, :directions
     @@all = []
 
     def self.new_from_type(html, type)
-        5.times do |i|
-            self.new(
-            html.css(".fixed-recipe-card__title-link")[i*2].text.strip,
-            type,
-            html.css(".grid-card-image-container a")[i*2].attr("href"),
-            )
+        15.times do |i|
+            if html.css(".full-item-content a")[i].attr("href").include?("/recipes/")
+                self.new(
+                html.css(".full-item-content a")[i].text,
+                type,
+                "https://www.delish.com#{html.css(".full-item-content a")[i].attr("href")}",
+                )
+            end
         end
     end
 
@@ -21,36 +22,33 @@ class FoodRecipes::Recipe
         self.save
     end
 
-    def  prep
-        @prep ||= doc.css(".prepTime__item")[1].text.strip
+    def yields
+        @yields ||= doc.css(".yields-amount").text.tr("\n", "").tr("\t","")
     end
 
-    def cook
-        @cook ||= doc.css(".prepTime__item")[2].text.strip
+    def prep
+        @prep_time ||= doc.css(".prep-time-amount").text.tr("\n", "").squeeze
     end
-        
+
     def total
-        @total ||= doc.css(".prepTime__item")[3].text.strip
-    end
-
-    def servings
-        @servings ||= doc.css("#metaRecipeServings").attr("content").value
+        @total_time ||= doc.css(".total-time-amount").text.tr("\n", "").squeeze
     end
 
     def ingredients
-        @ingredients ||= doc.css(".checkList__line").text.squeeze.gsub("\r\n", "").squeeze[1..-54].split(", ") 
+        arr = doc.css(".ingredient-lists").each do |ingredient|
+            ingredient.css(".ingredient-item").text
+        end.text.tr("\t", "").tr("\n","")
     end
 
     def directions
-        @directions ||= doc.css(".recipe-directions__list--item").text.gsub("\r\n", "").split(".")
-    end
-    
-    def nutrition_facts
-        @nutrition_facts ||= doc.css(".nutrition-summary-facts").text.squeeze.gsub("\r\n", "")
+        doc.css(".direction-lists").each do |direction|
+            direction.css(".li")
+        end.text.tr("\t","").tr("\n","") 
     end
 
     def self.find(input)
-        self.all.detect {|recipe| recipe.name == input}
+        arr = self.all.select {|recipe| recipe.type == input}
+        arr
     end
 
     def self.all
@@ -63,5 +61,5 @@ class FoodRecipes::Recipe
 
     def doc
         @doc ||= Nokogiri::HTML(open(self.url))
-      end
+    end
 end

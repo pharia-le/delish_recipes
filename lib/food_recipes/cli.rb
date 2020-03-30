@@ -5,51 +5,48 @@ class FoodRecipes::CLI
         puts "Welcome to FoodRecipes!"
         start
     end
-        
+
     def start   
         puts(<<~MAIN)
+       
+        Please choose a meal type below: Enter # 1-4
 
-        Please choose a meal type below: Enter # 1-5
-
-        1. Appetizers & Snacks
-        2. Breakfast & Brunch
-        3. Desserts
-        4. Dinner
-        5. Drinks
+        1. Dinner
+        2. Dessert
+        3. 30 Minute Meals
+        4. Cocktails
 
         MAIN
 
         input = gets.strip.to_i
-        while !(1..5).include?(input)
-            puts "ERROR: Please enter a number between 1-5."
+        while !(1..4).include?(input)
+            puts "ERROR: Please enter a number between 1-4."
             input = gets.strip.to_i
         end
 
         case input
             when 1
-                input = "appetizers-and-snacks"
+                input = "weeknight-dinners"
             when 2
-                input = "breakfast-and-brunch"
+                input = "dessert-recipes"
             when 3
-                input = "desserts"
-            when 4
-                input = "dinner"
+                input = "content/30-minute-meals/"
             else
-                input = "drinks"
+                input = "content/cocktail-recipes/"
         end
-
+        
         choices = []
 
         puts ""
         puts "What recipe would you like more information on?"
         puts ""
+
         recipes = print_recipes(input)
         
         puts ""
-        
         input = gets.strip.to_i
-        while !(1..5).include?(input)
-            puts "ERROR: Please enter a number between 1-5."
+        while !(1..recipes.size).include?(input)
+            puts "ERROR: Please enter a number between 1-#{recipes.size}."
             input = gets.strip.to_i
         end
         
@@ -75,29 +72,24 @@ class FoodRecipes::CLI
 
     def print_recipe(recipe)
         puts ""
-        puts "----------- #{recipe.name} - #{recipe.type} -----------"
+        puts "----------- #{recipe.name} -----------"
         puts ""
-        puts "Prep:           #{recipe.prep}"
-        puts "Cook:          #{recipe.cook}"
-        puts "Total:            #{recipe.total}"
-        puts "Servings:             #{recipe.servings}"
+        puts "Yields:              #{recipe.yields}"
+        puts "Prep Time:           #{recipe.prep}"
+        puts "Total Time:          #{recipe.total}"
     
         puts ""
-        puts "---------------Ingredients--------------"
+        puts "---------------I N G R E D I E N T S--------------"
         puts ""
         puts "#{recipe.ingredients}"
         puts ""
     
         puts ""
-        puts "---------------Directions--------------"
+        puts "--------------- D I R E C T I O N S --------------"
         puts ""
         puts "#{recipe.directions}"
         puts ""
 
-        puts "---------------Nutrition Facts--------------"
-        puts ""
-        puts "#{recipe.nutrition_facts}"
-        puts ""
     end
 
     def print_recipes(input)
