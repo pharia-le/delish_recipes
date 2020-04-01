@@ -1,6 +1,6 @@
 class FoodRecipes::Recipe
 
-    attr_accessor :name, :type, :url, :yields, :prep, :total, :ingredients, :directions
+    attr_accessor :name, :type, :url, :yields, :prep, :total, :ingredients, :directions, :author_info
     @@all = []
 
     def self.new_from_type(html, type)
@@ -53,6 +53,12 @@ class FoodRecipes::Recipe
             end
         end
         directions
+    end
+
+    def author_info
+        @author_info ||= [doc.css(".author-name").map(&:text)[1],doc.css(".author-bio").text]
+        @author_info = ["N/A", "N/A"] if doc.css(".author-name").map(&:text)[1].nil?
+        @author_info
     end
 
     def self.find(input)

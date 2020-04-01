@@ -88,9 +88,14 @@ class FoodRecipes::CLI
         puts "--------------- Directions --------------"
         puts ""
         recipe.directions.each.with_index(1) do |direction, i| 
-            puts "#{i}. #{direction}"
+            puts "#{i}) #{direction}"
         end
         puts ""
+        
+        puts ""
+        puts "--------------- About Author: #{recipe.author_info[0]} --------------"
+        puts ""
+        puts recipe.author_info[1]
 
     end
 
