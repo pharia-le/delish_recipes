@@ -27,23 +27,32 @@ class FoodRecipes::Recipe
     end
 
     def prep
-        @prep_time ||= doc.css(".prep-time-amount").text.tr("\n", "").squeeze
+        @prep_time ||= doc.css(".prep-time-amount").text.tr("\n", "").strip.squeeze
     end
 
     def total
-        @total_time ||= doc.css(".total-time-amount").text.tr("\n", "").squeeze
+        @total_time ||= doc.css(".total-time-amount").text.tr("\n", "").strip.squeeze
     end
 
     def ingredients
-        arr = doc.css(".ingredient-lists").each do |ingredient|
-            ingredient.css(".ingredient-item").text
-        end.text.tr("\t", "").tr("\n","")
+        ingredient_list = []
+        doc.css(".ingredient-lists").each do |ele|
+            ele.css(".ingredient-item").each do |item|
+                ingredient = item.css(".ingredient-amount").text + item.css(".ingredient-description").text
+                ingredient_list << ingredient.squeeze.gsub("\n\t", " ").squeeze.strip
+            end
+        end
+        ingredient_list
     end
 
     def directions
-        doc.css(".direction-lists").each do |direction|
-            direction.css(".li")
-        end.text.tr("\t","").tr("\n","") 
+        directions = []
+        doc.css(".direction-lists ol").each do |ele|
+            ele.css("li").map(&:text).each do |item|
+                directions << item.strip
+            end
+        end
+        directions
     end
 
     def self.find(input)

@@ -79,15 +79,17 @@ class FoodRecipes::CLI
         puts "Total Time:          #{recipe.total}"
     
         puts ""
-        puts "---------------I N G R E D I E N T S--------------"
+        puts "--------------- Ingredients --------------"
         puts ""
-        puts "#{recipe.ingredients}"
+        recipe.ingredients.each {|ingredient| puts ingredient}
         puts ""
     
         puts ""
-        puts "--------------- D I R E C T I O N S --------------"
+        puts "--------------- Directions --------------"
         puts ""
-        puts "#{recipe.directions}"
+        recipe.directions.each.with_index(1) do |direction, i| 
+            puts "#{i}. #{direction}"
+        end
         puts ""
 
     end
