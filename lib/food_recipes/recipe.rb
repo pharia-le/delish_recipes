@@ -49,7 +49,7 @@ class FoodRecipes::Recipe
         directions = []
         doc.css(".direction-lists ol").each do |ele|
             ele.css("li").map(&:text).each do |item|
-                directions << item.strip
+                directions << item.strip.gsub("\r\n", " ")
             end
         end
         directions
