@@ -80,11 +80,15 @@ class FoodRecipes::CLI
         puts "  Prep Time:        #{recipe.prep}"
         puts "  Total Time:       #{recipe.total}"
         puts ""
+        
+        sleep 1
 
         puts "- Ingredients -".yellow.underline
         puts ""
         recipe.ingredients.each {|ingredient| puts "- #{ingredient}"}
         puts ""
+
+        sleep 1
 
         puts "- Directions -".yellow.underline
         puts ""
@@ -92,6 +96,8 @@ class FoodRecipes::CLI
             puts "(#{i}) #{direction}"
             puts ""
         end
+
+        sleep 1
         
         puts "- About Author: #{recipe.author_info[0]} -".yellow.underline
         puts ""
