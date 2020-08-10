@@ -3,18 +3,6 @@ class FoodRecipes::Recipe
     attr_accessor :name, :type, :url, :yields, :prep, :total, :ingredients, :directions, :author_info
     @@all = []
 
-    def self.new_from_type(html, type)
-        15.times do |i|
-            if !html.css(".full-item a")[i].values[0].include?("/g")
-                self.new(
-                    html.css("div.full-item-title.item-title")[i].text,
-                type,
-                "https://www.delish.com#{html.css(".full-item a")[i].attr("href")}",
-                )
-            end
-        end
-    end
-
     def initialize(name=nil, type=nil, url=nil)
         @name = name
         @type = type
