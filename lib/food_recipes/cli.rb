@@ -1,8 +1,8 @@
 class FoodRecipes::CLI
 
     def call
+        puts "Welcome to Food Recipes!"
         FoodRecipes::SCRAPER.new.make_recipes
-        puts "Welcome to FoodRecipes!"
         start
     end
 
@@ -108,5 +108,4 @@ class FoodRecipes::CLI
             end
         end
     end
-
 end
