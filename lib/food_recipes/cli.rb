@@ -1,16 +1,15 @@
 class FoodRecipes::CLI
 
     def call
-        puts "Welcome to Food Recipes!"
+        puts "\nWelcome to Food Recipes!".light_red.bold
         FoodRecipes::SCRAPER.new.make_recipes
         start
     end
 
-    def start   
+    def start
+        puts "\nPlease choose a meal type below: Enter # 1-4".light_red
         puts(<<~MAIN)
-       
-        Please choose a meal type below: Enter # 1-4
-
+    
         1. Dinner
         2. Dessert
         3. 30 Minute Meals
@@ -20,7 +19,7 @@ class FoodRecipes::CLI
 
         input = gets.strip.to_i
         while !(1..4).include?(input)
-            puts "ERROR: Please enter a number between 1-4."
+            puts "ERROR: Please enter a number between 1-4.".light_red
             input = gets.strip.to_i
         end
 
@@ -38,7 +37,7 @@ class FoodRecipes::CLI
         choices = []
 
         puts ""
-        puts "What recipe would you like more information on?"
+        puts "What recipe would you like more information on?".light_red
         puts ""
 
         recipes = print_recipes(input)
@@ -46,14 +45,14 @@ class FoodRecipes::CLI
         puts ""
         input = gets.strip.to_i
         while !(1..recipes.size).include?(input)
-            puts "ERROR: Please enter a number between 1-#{recipes.size}."
+            puts "ERROR: Please enter a number between 1-#{recipes.size}.".light_red
             input = gets.strip.to_i
         end
         
         print_recipe(recipes[input-1])
 
         puts ""
-        puts "Would you like to see another recipe? Enter Y or N"
+        puts "Would you like to see another recipe? Enter Y or N".light_red
         puts ""
 
         input = gets.strip.downcase
@@ -61,42 +60,39 @@ class FoodRecipes::CLI
             start
         elsif input == "n"
             puts ""
-            puts "Thank you! Have a great day!"
+            puts "Thank you! Have a great day!".light_red.bold
             exit
         else
             puts ""
-            puts "I don't understand that answer."
+            puts "I don't understand that answer.".light_red
             start
         end
     end
 
     def print_recipe(recipe)
         puts ""
-        puts "----------- #{recipe.name} -----------"
+        puts "- #{recipe.name} -".yellow.underline
         puts ""
-        puts "Yields:              #{recipe.yields}"
-        puts "Prep Time:           #{recipe.prep}"
-        puts "Total Time:          #{recipe.total}"
-    
+        puts "  Yields:           #{recipe.yields}"
+        puts "  Prep Time:        #{recipe.prep}"
+        puts "  Total Time:       #{recipe.total}"
         puts ""
-        puts "--------------- Ingredients --------------"
+
+        puts "- Ingredients -".yellow.underline
         puts ""
-        recipe.ingredients.each {|ingredient| puts ingredient}
+        recipe.ingredients.each {|ingredient| puts "- #{ingredient}"}
         puts ""
-    
-        puts ""
-        puts "--------------- Directions --------------"
+
+        puts "- Directions -".yellow.underline
         puts ""
         recipe.directions.each.with_index(1) do |direction, i| 
-            puts "#{i}) #{direction}"
+            puts "(#{i}) #{direction}"
+            puts ""
         end
-        puts ""
         
-        puts ""
-        puts "--------------- About Author: #{recipe.author_info[0]} --------------"
+        puts "- About Author: #{recipe.author_info[0]} -".yellow.underline
         puts ""
         puts recipe.author_info[1]
-
     end
 
     def print_recipes(input)
