@@ -1,7 +1,10 @@
 class FoodRecipes::CLI
 
     def call
-        puts "\nWelcome to Food Recipes!".light_red.bold
+        puts ""
+        puts "----------------------------".light_red
+        puts "- Welcome to Food Recipes! -".light_red.bold
+        puts "----------------------------".light_red
         FoodRecipes::SCRAPER.new.make_recipes
         start
     end
