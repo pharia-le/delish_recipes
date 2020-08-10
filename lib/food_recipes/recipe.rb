@@ -5,11 +5,11 @@ class FoodRecipes::Recipe
 
     def self.new_from_type(html, type)
         15.times do |i|
-            if html.css(".full-item-content a")[i].attr("href").include?("/recipes/")
+            if !html.css(".full-item a")[i].values[0].include?("/g")
                 self.new(
-                html.css(".full-item-content a")[i].text,
+                    html.css("div.full-item-title.item-title")[i].text,
                 type,
-                "https://www.delish.com#{html.css(".full-item-content a")[i].attr("href")}",
+                "https://www.delish.com#{html.css(".full-item a")[i].attr("href")}",
                 )
             end
         end
