@@ -10,7 +10,7 @@ class FoodRecipes::CLI
     end
 
     def start
-        puts "\nPlease choose a meal type below: Enter # 1-4".light_red
+        puts "\nPlease choose a meal type below: Enter # 1-4".light_red.bold
         puts(<<~MAIN)
     
         1. Dinner
@@ -22,7 +22,7 @@ class FoodRecipes::CLI
 
         input = gets.strip.to_i
         while !(1..4).include?(input)
-            puts "ERROR: Please enter a number between 1-4.".light_red
+            puts "ERROR: Please enter a number between 1-4.".light_red.bold
             input = gets.strip.to_i
         end
 
@@ -40,7 +40,7 @@ class FoodRecipes::CLI
         choices = []
 
         puts ""
-        puts "What recipe would you like more information on?".light_red
+        puts "What recipe would you like more information on?".light_red.bold
         puts ""
 
         recipes = print_recipes(input)
@@ -48,14 +48,14 @@ class FoodRecipes::CLI
         puts ""
         input = gets.strip.to_i
         while !(1..recipes.size).include?(input)
-            puts "ERROR: Please enter a number between 1-#{recipes.size}.".light_red
+            puts "ERROR: Please enter a number between 1-#{recipes.size}.".light_red.bold
             input = gets.strip.to_i
         end
         
         print_recipe(recipes[input-1])
 
         puts ""
-        puts "Would you like to see another recipe? Enter Y or N".light_red
+        puts "Would you like to see another recipe? Enter Y or N".light_red.bold
         puts ""
 
         input = gets.strip.downcase
@@ -67,7 +67,7 @@ class FoodRecipes::CLI
             exit
         else
             puts ""
-            puts "I don't understand that answer.".light_red
+            puts "I don't understand that answer.".light_red.bold
             start
         end
     end
@@ -81,14 +81,14 @@ class FoodRecipes::CLI
         puts "  Total Time:       #{recipe.total}"
         puts ""
         
-        sleep 1
+        sleep 1.25
 
         puts "- Ingredients -".yellow.underline
         puts ""
         recipe.ingredients.each {|ingredient| puts "- #{ingredient}"}
         puts ""
 
-        sleep 1
+        sleep 1.25
 
         puts "- Directions -".yellow.underline
         puts ""
@@ -97,7 +97,7 @@ class FoodRecipes::CLI
             puts ""
         end
 
-        sleep 1
+        sleep 1.25
         
         puts "- About Author: #{recipe.author_info[0]} -".yellow.underline
         puts ""
