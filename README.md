@@ -1,10 +1,8 @@
-# FoodRecipes
+# Food Recipes
 
-This ruby gem provides a CLI to view recipes from Food.com.
+This ruby gem provides a CLI to view recipes from Delish.com.
 
-TODO:
-    Clean Up Strings
-    Implement DRY
+<a href="https://asciinema.org/a/hmQawp0XxQqpVS6vVToWV2Wqg" target="_blank"><img src="https://asciinema.org/a/hmQawp0XxQqpVS6vVToWV2Wqg.svg" /></a>
 
 ## Installation
 
