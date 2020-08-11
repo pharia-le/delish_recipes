@@ -1,34 +1,47 @@
-# Food Recipes
+# Delish Recipes
 
-This ruby gem provides a CLI to view recipes from Delish.com.
+Delish Recipes is a Command Line Interface Application in Ruby where a user may browse recipes by category and view information regarding a selected recipe. All recipes have been scraped from Delish.com.
+
+GIF Demo:
 
 ![gif](https://i.imgur.com/8vHk4Q5.gif)
 
 ## Installation
 
-    $ gem install food_recipes
+Clone repository to chosen directory.
+
+```
+git clone git@github.com:pharia-le/delish_recipes.git
+```
 
 ## Usage
 
-Type the below and follow the on screen prompts.
-    
-    $ ruby ./bin/food-recipes
+CD into application.
 
-## Development
+```
+cd delish_recipes/
+```
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+Type the below command and follow the on screen prompts.
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+```    
+ruby ./bin/delish_recipes
+```
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[pharia-le/]/food_recipes. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[pharia-le/]/food_recipes/blob/master/CODE_OF_CONDUCT.md).
+When contributing to this repository, please first discuss the change you wish to make via issue, email, or any other method with the owners of this repository before making a change.
 
+### Pull Request Process
+
+1.Ensure any install or build dependencies are removed before the end of the layer when doing a build.
+
+2.Update the README.md with details of changes to the interface, this includes new environment variables, exposed ports, useful file locations and container parameters.
+
+3.Increase the version numbers in any examples files and the README.md to the new version that this Pull Request would represent. The versioning scheme we use is SemVer.
+
+4.You may merge the Pull Request in once you have the sign-off of two other developers, or if you do not have permission to do that, you may request the second reviewer to merge it for you.
 
 ## License
 
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
-
-## Code of Conduct
-
-Everyone interacting in the FoodRecipes project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[pharia-le/]/food_recipes/blob/master/CODE_OF_CONDUCT.md).
+This project is licensed under the MIT Open Source Public License.
