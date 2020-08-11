@@ -2,7 +2,7 @@
 
 This ruby gem provides a CLI to view recipes from Delish.com.
 
-<a href="https://asciinema.org/a/hmQawp0XxQqpVS6vVToWV2Wqg" target="_blank"><img src="https://asciinema.org/a/hmQawp0XxQqpVS6vVToWV2Wqg.svg" /></a>
+![gif](https://i.imgur.com/8vHk4Q5.gif)
 
 ## Installation
 
