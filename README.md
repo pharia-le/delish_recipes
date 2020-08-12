@@ -4,7 +4,7 @@ Delish Recipes is a Command Line Interface Application in Ruby where a user may 
 
 GIF Demo:
 
-![gif](https://i.imgur.com/8vHk4Q5.gif)
+![gif](https://i.imgur.com/8Eth9Lj.gif)
 
 ## Installation
 
